@@ -19,7 +19,7 @@ public class ResolutionsApplication {
 		return new InMemoryUserDetailsManager(
 				org.springframework.security.core.userdetails.User
 						.withUsername("user")
-						.password("{bcrypt}$2a$10$SATdMR3qqfvylTVP0os.LODwc0bAiFN32X3sN01UM5vAA2/WVdZ0m")
+						.password("{bcrypt}$2a$10$MywQEqdZFNIYnx.Ro/VQ0ulanQAl34B5xVjK2I/SDZNVGS5tHQ08W")
 						.authorities("resolution:read")
 						.build());
 	}
