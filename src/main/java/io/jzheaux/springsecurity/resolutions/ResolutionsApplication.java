@@ -30,14 +30,20 @@ public class ResolutionsApplication {
 //						.build());
 //	}
 
+// hardcoded authorities
+//	@Bean
+//	public UserDetailsService userDetailsService(DataSource dataSource) {
+//		return new JdbcUserDetailsManager(dataSource) {
+//			@Override
+//			protected List<GrantedAuthority> loadUserAuthorities(String username) {
+//				return AuthorityUtils.createAuthorityList("resolution:read");
+//			}
+//		};
+//
+//	}
+
 	@Bean
 	public UserDetailsService userDetailsService(DataSource dataSource) {
-		return new JdbcUserDetailsManager(dataSource) {
-			@Override
-			protected List<GrantedAuthority> loadUserAuthorities(String username) {
-				return AuthorityUtils.createAuthorityList("resolution:read");
-			}
-		};
-
+		return new JdbcUserDetailsManager(dataSource);
 	}
 }
