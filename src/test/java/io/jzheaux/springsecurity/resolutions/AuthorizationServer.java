@@ -169,7 +169,8 @@ class AuthorizationServer extends Dispatcher implements AutoCloseable {
 
     private JSONObject toMap(JWT jwt) {
         try {
-            JSONObject claims = jwt.getJWTClaimsSet().toJSONObject();
+            //JSONObject claims = jwt.getJWTClaimsSet().toJSONObject();
+            JSONObject claims = (JSONObject)jwt.getJWTClaimsSet().toJSONObject();
             claims.put("active", true);
             return claims;
         } catch (Exception e) {
