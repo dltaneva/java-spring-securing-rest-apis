@@ -21,7 +21,7 @@ public class User implements Serializable {
     @Column
     private boolean enabled = true;
 
-    User() {}
+    public User() {}
 
     public User(String username, String password) {
         this.id = UUID.randomUUID();
