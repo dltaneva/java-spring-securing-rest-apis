@@ -25,6 +25,13 @@ public class UserAuthority {
         this.authority = authority;
     }
 
+    public UserAuthority(UserAuthority userAuthority) {
+        this.id = userAuthority.id;
+        this.user = userAuthority.user;
+        this.authority = userAuthority.authority;
+
+    }
+
     public UUID getId() {
         return id;
     }
