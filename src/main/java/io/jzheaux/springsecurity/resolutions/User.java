@@ -11,16 +11,16 @@ import java.util.UUID;
 public class User implements Serializable {
 
     @Id
-    private UUID id;
+    UUID id;
 
     @Column
-    private String username;
+    String username;
 
     @Column
-    private String password;
+    String password;
 
     @Column
-    private boolean enabled = true;
+    boolean enabled = true;
 
     @OneToMany(fetch=FetchType.EAGER, cascade= CascadeType.ALL)
     Collection<UserAuthority> userAuthorities = new ArrayList<>();
