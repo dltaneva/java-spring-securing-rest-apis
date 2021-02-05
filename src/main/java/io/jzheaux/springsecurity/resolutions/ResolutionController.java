@@ -31,9 +31,20 @@ public class ResolutionController {
 		return this.resolutions.findById(id);
 	}
 
+//	@GetMapping("/resolution/{id}")
+//	public Optional<Resolution> read(@PathVariable("id") String id) {
+//		return this.resolutions.findById(UUID.fromString(id));
+//	}
+
+//	@PostMapping("/resolution")
+//	public Resolution make( @RequestBody String text) {
+//		String owner = "user";
+//		Resolution resolution = new Resolution(text, owner);
+//		return this.resolutions.save(resolution);
+//	}
+
 	@PostMapping("/resolution")
-	public Resolution make(@RequestBody String text) {
-		String owner = "user";
+	public Resolution make(@CurrentUsername String owner, @RequestBody String text) {
 		Resolution resolution = new Resolution(text, owner);
 		return this.resolutions.save(resolution);
 	}
