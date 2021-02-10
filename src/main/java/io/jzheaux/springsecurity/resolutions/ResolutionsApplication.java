@@ -29,10 +29,19 @@ public class ResolutionsApplication extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 				.authorizeRequests(authz -> authz
-						.mvcMatchers(GET, "/resolutions", "/resolution/**").hasAuthority("resolution:read")
-						.anyRequest().hasAuthority("resolution:write"))
+						.anyRequest().authenticated())
 				.httpBasic(basic -> {});
 	}
+
+// before method-based authorization
+//	@Override
+//	protected void configure(HttpSecurity http) throws Exception {
+//		http
+//				.authorizeRequests(authz -> authz
+//						.mvcMatchers(GET, "/resolutions", "/resolution/**").hasAuthority("resolution:read")
+//						.anyRequest().hasAuthority("resolution:write"))
+//				.httpBasic(basic -> {});
+//	}
 
 
 //	@Bean
