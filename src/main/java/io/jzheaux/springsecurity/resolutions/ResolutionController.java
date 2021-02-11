@@ -1,5 +1,7 @@
 package io.jzheaux.springsecurity.resolutions;
 
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PostFilter;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -58,7 +60,10 @@ public class ResolutionController {
 	}
 
 	@PutMapping(path="/resolution/{id}/revise")
+	@Modifying
+	@Query("UPDATE Resolution SET text = :text WHERE id = :id AND owner = ?#{authentication.name}")
 	@PreAuthorize("hasAuthority('resolution:write')")
+	@PostAuthorize("returnObject.orElse(null)?.owner == authentication.name")
 	@Transactional
 	public Optional<Resolution> revise(@PathVariable("id") UUID id, @RequestBody String text) {
 		this.resolutions.revise(id, text);
@@ -66,7 +71,10 @@ public class ResolutionController {
 	}
 
 	@PutMapping("/resolution/{id}/complete")
+	@Modifying
+	@Query("UPDATE Resolution SET completed = 1 WHERE id = :id AND owner = ?#{authentication.name}")
 	@PreAuthorize("hasAuthority('resolution:write')")
+	@PostAuthorize("returnObject.orElse(null)?.owner == authentication.name")
 	@Transactional
 	public Optional<Resolution> complete(@PathVariable("id") UUID id) {
 		this.resolutions.complete(id);
