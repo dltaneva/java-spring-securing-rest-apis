@@ -33,6 +33,11 @@ public class ResolutionsApplication extends WebSecurityConfigurerAdapter {
 				.httpBasic(basic -> {});
 	}
 
+	@Bean
+	UserDetailsService userDetailsService(UserRepository users) {
+		return new UserRepositoryUserDetailsService(users);
+	}
+
 // before method-based authorization
 //	@Override
 //	protected void configure(HttpSecurity http) throws Exception {
@@ -70,9 +75,4 @@ public class ResolutionsApplication extends WebSecurityConfigurerAdapter {
 //	public UserDetailsService userDetailsService(DataSource dataSource) {
 //		return new JdbcUserDetailsManager(dataSource);
 //	}
-
-	@Bean
-	UserDetailsService userDetailsService(UserRepository users) {
-		return new UserRepositoryUserDetailsService(users);
-	}
 }
