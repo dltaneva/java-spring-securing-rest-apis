@@ -43,12 +43,11 @@ public class ResolutionsApplication extends WebSecurityConfigurerAdapter {
 	}
 
 	@Bean
-	WebMvcConfigurer webMvcConfigurer() {
+	public WebMvcConfigurer webMvcConfigurer() {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/**")
-						// .maxAge(0) // if using local verification
 						.allowedOrigins("http://localhost:4000")
 						.allowedMethods("HEAD")
 						.allowedHeaders("Authorization");
