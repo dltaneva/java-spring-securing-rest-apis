@@ -19,8 +19,8 @@ public class ResolutionController {
 	}
 
 	@GetMapping("/resolutions")
-	@CrossOrigin(allowCredentials = "true")
-	//@CrossOrigin //(maxAge = 0) if locally verifying
+	//@CrossOrigin(allowCredentials = "true") Doesn't run!
+	@CrossOrigin //(maxAge = 0) if locally verifying
 	@PreAuthorize("hasAuthority('resolution:read')")
 	//@PostFilter("filterObject.owner == authentication.name")
 	//@PostFilter("filterObject.owner == authentication.name || hasRole('ADMIN')")
